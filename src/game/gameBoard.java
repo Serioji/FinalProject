@@ -34,13 +34,10 @@ public class gameBoard extends JFrame implements MouseListener {
             }
         }
     }
-    private Color getTileColor(int row, int col) {
 
-        return Color.WHITE;
-    }
     private void renderGameTile(Graphics g, int row, int col) {
-        Color tileColor = this.getTileColor(row, col);
-        GameTile tile = new GameTile(row, col, tileColor);
+
+        GameTile tile = new GameTile(row, col);
         tile.render(g);
     }
 
