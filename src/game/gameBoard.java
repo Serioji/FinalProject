@@ -11,6 +11,8 @@ public class gameBoard extends JFrame implements MouseListener {
     public static final int TILE_SIDE_COUNT_RIGHT = 10;
     protected Holes[][] holes;
     protected Knight[][] knights;
+    protected Elfs[][] elfs;
+    protected  Dwarfs[][] dwarfs;
     int randomNumber1,randomNumber2;
     int trapCounter;
 
@@ -76,6 +78,22 @@ public class gameBoard extends JFrame implements MouseListener {
     private boolean hasKnight(int row, int col) {
         return this.getKnight(row, col) != null;
     }
+    private Elfs getElfs(int row, int col) {
+        return this.elfs[row][col];
+
+    }
+
+    private boolean hasElfs(int row, int col) {
+        return this.getElfs(row, col) != null;
+    }
+    private Dwarfs getDwarfs(int row, int col) {
+        return this.dwarfs[row][col];
+
+    }
+
+    private boolean hasDwarfs(int row, int col) {
+        return this.getDwarfs(row, col) != null;
+    }
     private void renderGamePiece(Graphics g, int row, int col) {
         if (this.hasHole(row, col)) {
             Holes p = (Holes) this.getHoles(row, col);
@@ -85,6 +103,14 @@ public class gameBoard extends JFrame implements MouseListener {
             Knight p = (Knight) this.getKnight(row,col);
             p.render(g);
          }
+        if(this.hasElfs(row,col)){
+            Elfs p = (Elfs) this.getElfs(row,col);
+            p.render(g);
+        }
+        if(this.hasDwarfs(row,col)){
+            Dwarfs p = (Dwarfs) this.getDwarfs(row,col);
+            p.render(g);
+        }
 
     }
 
