@@ -27,10 +27,10 @@ public class GameTile {
         int tileY = this.row * this.tileSize;
         g.setColor(Color.GRAY);
         g.fillRect(10,31,900,700);
+        g.fillRect(1010,225,300,225);
         g.setColor(Color.WHITE);
         g.fillRect(10,231,900,300);
         g.setColor(Color.red);
-
         g.fillRect(10,31,TILE_SIZE,TILE_SIZE);g.fillRect(210,31,TILE_SIZE,TILE_SIZE);g.fillRect(410,31,TILE_SIZE,TILE_SIZE);
         g.fillRect(610,31,TILE_SIZE,TILE_SIZE);g.fillRect(810,31,TILE_SIZE,TILE_SIZE);
         g.fillRect(10,631,TILE_SIZE,TILE_SIZE);g.fillRect(210,631,TILE_SIZE,TILE_SIZE);g.fillRect(410,631,TILE_SIZE,TILE_SIZE);g.fillRect(610,631,TILE_SIZE,TILE_SIZE);g.fillRect(810,631,TILE_SIZE,TILE_SIZE);g.fillRect(110,131,TILE_SIZE,TILE_SIZE);
@@ -39,6 +39,7 @@ public class GameTile {
         g.fillRect(310,531,TILE_SIZE,TILE_SIZE);g.fillRect(510,531,TILE_SIZE,TILE_SIZE); g.fillRect(710,531,TILE_SIZE,TILE_SIZE);
 
         g.setColor(Color.BLACK);
+        g.fillRect(1010,275,300,3);
         for (int i=31; i<=731 ;i+=100){
             for(int j=8;j<=908;j+=100){
                 if(j<908&&i<731) {
