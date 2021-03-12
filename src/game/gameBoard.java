@@ -380,7 +380,6 @@ private void label(){
                         this.elf = this.getElfs(row, col);
                 }
                 if(knight == null || dwarf == null || elfs == null){
-                    UI.render(this,"Край","Имаме победител");
                 }
 
 
