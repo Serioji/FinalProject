@@ -25,7 +25,7 @@ public class Dwarfs extends Figure {
 
         int rowCoeficient = Math.abs(moveRow - this.row);
         int colCoeficient = moveCol - this.col;
-        if(rowCoeficient==0&&colCoeficient==2||colCoeficient==0 && rowCoeficient==2)
+        if(rowCoeficient<=2&&colCoeficient==0||colCoeficient<=2 && rowCoeficient==0)
             return  true;
         return false;
     }

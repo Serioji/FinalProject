@@ -316,6 +316,9 @@ private void label(){
             if (this.hasElfs(row, col))
                 this.elf = this.getElfs(row, col);
         }
+        if(this.hasHole(row,col)){
+            UI.render(this,"Невалиден ход","има дупка");
+        }
         if(this.knight !=null){
             knightMove(row,col,firstRow,firstCol);
 

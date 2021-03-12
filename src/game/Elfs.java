@@ -26,7 +26,7 @@ public class Elfs extends Figure {
 
         int rowCoeficient = Math.abs(moveRow - this.row);
         int colCoeficient = moveCol - this.col;
-        if(rowCoeficient==0&&colCoeficient==3||colCoeficient==0 && rowCoeficient==3)
+        if(rowCoeficient==0&&colCoeficient<=3||colCoeficient==0 && rowCoeficient<=3)
             return  true;
         return false;
     }
