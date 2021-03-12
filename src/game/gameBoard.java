@@ -347,37 +347,40 @@ private void label(){
         }
 
         else {
-            if (this.knight != null) {
-                if(hasElfs(row,col) || hasHole(row,col) || hasDwarfs(row,col)){
-                    System.out.println("nevaliden hod");
-                }else
-                knightMove(row, col, firstRow, firstCol);
+            if(this.hasHole(row,col)){
+                System.out.println("dupka");
+            }else {
+                if (this.knight != null) {
+                    if (hasElfs(row, col) || hasHole(row, col) || hasDwarfs(row, col)) {
+                        System.out.println("nevaliden hod");
+                    } else
+                        knightMove(row, col, firstRow, firstCol);
+                }
+                if (this.dwarf != null) {
+                    if (hasElfs(row, col) || hasHole(row, col) || hasKnight(row, col)) {
+                        System.out.println("nevaliden hod");
+                    } else
+                        dwarfMove(row, col, firstRow, firstCol);
+                }
+                if (this.elf != null) {
+                    if (hasKnight(row, col) || hasHole(row, col) || hasDwarfs(row, col)) {
+                        System.out.println("nevaliden hod");
+                    } else
+                        elfMove(row, col, firstRow, firstCol);
+                } else {
+                    firstRow = row;
+                    firstCol = col;
+
+                    if (this.hasKnight(row, col))
+                        this.knight = this.getKnight(row, col);
+                    if (this.hasDwarfs(row, col))
+                        this.dwarf = this.getDwarfs(row, col);
+                    if (this.hasElfs(row, col))
+                        this.elf = this.getElfs(row, col);
+                }
+
+
             }
-            if (this.dwarf != null) {
-                if(hasElfs(row,col) || hasHole(row,col) || hasKnight(row,col)){
-                    System.out.println("nevaliden hod");
-                }else
-                dwarfMove(row, col, firstRow, firstCol);
-            }
-            if (this.elf != null) {
-                if(hasKnight(row,col) || hasHole(row,col) || hasDwarfs(row,col)){
-                    System.out.println("nevaliden hod");
-                }else
-                elfMove(row, col, firstRow, firstCol);
-            } else {
-                firstRow = row;
-                firstCol = col;
-
-                if (this.hasKnight(row, col))
-                    this.knight = this.getKnight(row, col);
-                if (this.hasDwarfs(row, col))
-                    this.dwarf = this.getDwarfs(row, col);
-                if (this.hasElfs(row, col))
-                    this.elf = this.getElfs(row, col);
-            }
-
-
-
         }
         this.repaint();
 
