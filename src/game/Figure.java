@@ -8,8 +8,8 @@ public class Figure {
     String id;
     Color color;
     Color color2;
-    int randomNumber1;
-    public void hpGainKnight(){
+    int randomNumber1,randomNumber2,randomNumber3;
+    public void hpGain(){
         randomNumber1 = ThreadLocalRandom.current().nextInt(1,6);
         switch (randomNumber1){
             case 1 -> health+=1;
@@ -19,6 +19,12 @@ public class Figure {
             case 5 -> health+=5;
             case 6 -> health+=6;
         }
+    }
+    public void attackDmg(){
+        randomNumber1 = ThreadLocalRandom.current().nextInt(1,6);
+        randomNumber2 = ThreadLocalRandom.current().nextInt(1,6);
+        randomNumber3 = ThreadLocalRandom.current().nextInt(1,6);
+
     }
 }
 

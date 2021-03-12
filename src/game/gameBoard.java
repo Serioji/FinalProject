@@ -22,8 +22,9 @@ public class gameBoard extends JFrame implements MouseListener {
     int trapCounter;
     int playerTurn = 0;
     int firstRow,firstCol;
-    int player =0;
+    int points1,points2;
     Color playerC;
+
 
     JLabel label = new JLabel();
     JLabel label1 = new JLabel();
@@ -33,6 +34,9 @@ public class gameBoard extends JFrame implements MouseListener {
     JLabel label5 = new JLabel();
     JLabel label6 = new JLabel();
     JLabel label7 = new JLabel();
+    JLabel label8 = new JLabel();
+    JLabel label9 = new JLabel();
+    JLabel label10 = new JLabel();
 
     public gameBoard() {
         this.holes = (new Holes[TILE_SIDE_COUNT_UP][TILE_SIDE_COUNT_RIGHT]);
@@ -76,6 +80,13 @@ private void label(){
     label6.setBounds(1000,10,100,50);
     label7.setText("E");
     label7.setBounds(1200,10,100,50);
+    label8.setText("points player 1 :" + points1 );
+    label8.setBounds(1150,150,100,50);
+    label9.setText("points player 2 :" + points2 );
+    label9.setBounds(1150,650,100,50);
+    label10.setText("playerTurn:" + playerTurn );
+    label10.setBounds(1150,300,100,50);
+
     this.add(label);
     this.add(label1);
     this.add(label2);
@@ -84,6 +95,9 @@ private void label(){
     this.add(label5);
     this.add(label6);
     this.add(label7);
+    this.add(label8);
+    this.add(label9);
+    this.add(label10);
     this.setLayout(null);
 }
     private void summonUnit(){
@@ -101,7 +115,6 @@ private void label(){
             case 10 ->this.dwarfs[1][14] = (new Dwarfs(1,14,Color.CYAN,"D",Color.red));
                     case 11 ->this.dwarfs[6][14] = (new Dwarfs(6,14,Color.CYAN,"D",Color.BLACK));
         }
-
     }
     @Override
     public void paint(Graphics g) {
@@ -283,65 +296,88 @@ private void label(){
     }
     @Override
     public void mouseClicked(MouseEvent e) {
+        label10.setText("playerTurn:" + playerTurn );
         int row = this.getBoardDimensionBasedOnCoordinates(e.getY());
         int col = this.getBoardDimensionBasedOnCoordinates(e.getX());
-        if (dwarf != null || knight != null || elf != null) {
-            if (hasHelpers(row, col)) {
-                deleter();
-                if (dwarf != null) {
-                    this.dwarfs[row][col] = (new Dwarfs(row, col, Color.CYAN, "D", playerC));
-                    dwarf = null;
-                    this.dwarfs[firstRow][firstCol]=null;
+        if(playerTurn ==12) {
+            deleter();
+        }
+        if(playerTurn<12) {
+            if (dwarf != null || knight != null || elf != null) {
+                if (hasHelpers(row, col)) {
+                        deleter();
+                    if (dwarf != null) {
+                        this.dwarfs[row][col] = (new Dwarfs(row, col, Color.CYAN, "D", playerC));
+                        dwarf = null;
+                        this.dwarfs[firstRow][firstCol] = null;
+                    }
+                    if (knight != null) {
+                        this.knights[row][col] = (new Knight(row, col, Color.GREEN, "K", playerC));
+                        knight = null;
+                        this.knights[firstRow][firstCol] = null;
+                    }
+                    if (elf != null) {
+                        this.elfs[row][col] = (new Elfs(row, col, Color.MAGENTA, "E", playerC));
+                        elf = null;
+                        this.elfs[firstRow][firstCol] = null;
+                    }
                 }
-                if (knight != null) {
-                    this.knights[row][col] = (new Knight(row, col, Color.GREEN, "K", playerC));
-                    knight = null;
-                    this.knights[firstRow][firstCol]=null;
-                }
-                if (elf != null) {
-                    this.elfs[row][col] = (new Elfs(row, col, Color.MAGENTA, "E", playerC));
-                    elf = null;
-                    this.elfs[firstRow][firstCol]=null;
-                }
-                if(playerTurn==12){
-                   this.helpers[row][col] =null;
-                }
-            }
-            summonUnit();
-        } else {
-            if (playerTurn % 2 == 0) {
-                help(1);
-                playerC = Color.RED;
+                summonUnit();
             } else {
-                help(6);
-                playerC = Color.BLACK;
+                if (playerTurn % 2 == 0) {
+                    help(1);
+                    playerC = Color.RED;
+                } else {
+                    help(6);
+                    playerC = Color.BLACK;
+                }
+                playerTurn++;
+                firstRow = row;
+                firstCol = col;
+                if (this.hasKnight(row, col))
+                    this.knight = this.getKnight(row, col);
+                if (this.hasDwarfs(row, col))
+                    this.dwarf = this.getDwarfs(row, col);
+                if (this.hasElfs(row, col))
+                    this.elf = this.getElfs(row, col);
+
+
             }
-            playerTurn++;
-            firstRow = row;
-            firstCol = col;
-            if (this.hasKnight(row, col))
-                this.knight = this.getKnight(row, col);
-            if (this.hasDwarfs(row, col))
-                this.dwarf = this.getDwarfs(row, col);
-            if (this.hasElfs(row, col))
-                this.elf = this.getElfs(row, col);
-        }
-        if(this.hasHole(row,col)){
-            UI.render(this,"Невалиден ход","има дупка");
-        }
-        if(this.knight !=null){
-            knightMove(row,col,firstRow,firstCol);
 
         }
-        if(this.dwarf !=null){
-            dwarfMove(row,col,firstRow,firstCol);
+
+        else {
+            if (this.knight != null) {
+                if(hasElfs(row,col) || hasHole(row,col) || hasDwarfs(row,col)){
+                    System.out.println("nevaliden hod");
+                }else
+                knightMove(row, col, firstRow, firstCol);
             }
-        if(this.elf !=null){
-            elfMove(row,col,firstRow,firstCol);
-        }
-        else{
-            firstRow=row;
-            firstCol=col;
+            if (this.dwarf != null) {
+                if(hasElfs(row,col) || hasHole(row,col) || hasKnight(row,col)){
+                    System.out.println("nevaliden hod");
+                }else
+                dwarfMove(row, col, firstRow, firstCol);
+            }
+            if (this.elf != null) {
+                if(hasKnight(row,col) || hasHole(row,col) || hasDwarfs(row,col)){
+                    System.out.println("nevaliden hod");
+                }else
+                elfMove(row, col, firstRow, firstCol);
+            } else {
+                firstRow = row;
+                firstCol = col;
+
+                if (this.hasKnight(row, col))
+                    this.knight = this.getKnight(row, col);
+                if (this.hasDwarfs(row, col))
+                    this.dwarf = this.getDwarfs(row, col);
+                if (this.hasElfs(row, col))
+                    this.elf = this.getElfs(row, col);
+            }
+
+
+
         }
         this.repaint();
 
