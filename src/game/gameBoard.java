@@ -17,6 +17,7 @@ public class gameBoard extends JFrame implements MouseListener {
     protected Knight knight;
     protected Elfs elf;
     protected Dwarfs dwarf;
+    protected Holes hole;
     int randomNumber1,randomNumber2;
     int trapCounter;
     int playerTurn = 0;
@@ -245,6 +246,9 @@ private void label(){
     }
     private void knightMove(int row,int col,int firstRow,int firstCol){
         Knight p1 =(Knight) this.knight;
+        if(this.hasHole(row,col)){
+            UI.render(this,"Невалиден ход","Има дупка");
+        }
         if(this.hasKnight(row,col)){
 
         } else if(p1.isMoveValid(row,col)){
@@ -253,6 +257,9 @@ private void label(){
     }
     private void dwarfMove(int row,int col,int firstRow,int firstCol){
         Dwarfs p1 =(Dwarfs) this.dwarf;
+        if(this.hasHole(row,col)){
+            UI.render(this,"Невалиден ход","Има дупка");
+        }
         if(this.hasDwarfs(row,col)){
 
         } else if(p1.isMoveValid(row,col)){
@@ -261,6 +268,9 @@ private void label(){
     }
     private void elfMove(int row,int col,int firstRow,int firstCol){
         Elfs p1 =(Elfs) this.elf;
+        if(this.hasHole(row,col)){
+            UI.render(this,"Невалиден ход","Има дупка");
+        }
         if(this.hasElfs(row,col)){
 
         } else if(p1.isMoveValid(row,col)){

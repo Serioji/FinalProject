@@ -1,9 +1,11 @@
 package game;
 
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Elfs extends Figure {
     public Color color;
+    int randomNumber1;
 
     public Elfs(int row, int col, Color color,String id,Color color2) {
         super();
@@ -12,6 +14,9 @@ public class Elfs extends Figure {
         this.color=color;
         this.id="E";
         this.color2=color2;
+        this.attack=5;
+        this.armor=1;
+        this.health=10;
     }
 
     public int getRow() {
@@ -29,6 +34,25 @@ public class Elfs extends Figure {
         if(rowCoeficient==0&&colCoeficient<=3||colCoeficient==0 && rowCoeficient<=3)
             return  true;
         return false;
+    }
+    public boolean isAttackValid(int moveRow, int moveCol) {
+
+        int rowCoeficient = Math.abs(moveRow - this.row);
+        int colCoeficient = moveCol - this.col;
+        if(rowCoeficient==3&&colCoeficient==0||colCoeficient==3 && rowCoeficient==0)
+            return  true;
+        return false;
+    }
+    public void hpGainElfs(){
+        randomNumber1 = ThreadLocalRandom.current().nextInt(1,6);
+        switch (randomNumber1){
+            case 1 -> health+=1;
+            case 2 -> health+=2;
+            case 3 -> health+=3;
+            case 4 -> health+=4;
+            case 5 -> health+=5;
+            case 6 -> health+=6;
+        }
     }
 
     public void render(Graphics g) {

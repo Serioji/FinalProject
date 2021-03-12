@@ -1,9 +1,11 @@
 package game;
 
 import java.awt.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Dwarfs extends Figure {
     public Color color;
+    int randomNumber1;
 
     public Dwarfs(int row, int col, Color color,String id,Color color2) {
         super();
@@ -12,6 +14,9 @@ public class Dwarfs extends Figure {
         this.color=color;
         this.id = "D";
         this.color2=color2;
+        this.attack=6;
+        this.health=12;
+        this.armor=2;
     }
     public int getRow() {
         return row;
@@ -28,6 +33,25 @@ public class Dwarfs extends Figure {
         if(rowCoeficient<=2&&colCoeficient==0||colCoeficient<=2 && rowCoeficient==0)
             return  true;
         return false;
+    }
+    public boolean isAttackValid(int moveRow, int moveCol) {
+
+        int rowCoeficient = Math.abs(moveRow - this.row);
+        int colCoeficient = moveCol - this.col;
+        if(rowCoeficient==2&&colCoeficient==0||colCoeficient==2 && rowCoeficient==0)
+            return  true;
+        return false;
+    }
+    public void hpGainDwarfs(){
+        randomNumber1 = ThreadLocalRandom.current().nextInt(1,6);
+        switch (randomNumber1){
+            case 1 -> health+=1;
+            case 2 -> health+=2;
+            case 3 -> health+=3;
+            case 4 -> health+=4;
+            case 5 -> health+=5;
+            case 6 -> health+=6;
+        }
     }
 
     public void render(Graphics g) {
