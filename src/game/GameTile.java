@@ -26,30 +26,30 @@ public class GameTile {
         int tileX = this.col * this.tileSize;
         int tileY = this.row * this.tileSize;
         g.setColor(Color.GRAY);
-        g.fillRect(10,31,900,700);
-        g.fillRect(910,133,600,100);
-        g.fillRect(910,533,600,100);
+        g.fillRect(10,100,900,700);
+        g.fillRect(910,100,600,100);
+        g.fillRect(910,600,600,100);
         g.setColor(Color.WHITE);
-        g.fillRect(10,231,900,300);
+        g.fillRect(10,300,900,300);
         g.setColor(Color.red);
-        g.fillRect(10,31,TILE_SIZE,TILE_SIZE);g.fillRect(210,31,TILE_SIZE,TILE_SIZE);g.fillRect(410,31,TILE_SIZE,TILE_SIZE);
-        g.fillRect(610,31,TILE_SIZE,TILE_SIZE);g.fillRect(810,31,TILE_SIZE,TILE_SIZE);
-        g.fillRect(10,631,TILE_SIZE,TILE_SIZE);g.fillRect(210,631,TILE_SIZE,TILE_SIZE);g.fillRect(410,631,TILE_SIZE,TILE_SIZE);g.fillRect(610,631,TILE_SIZE,TILE_SIZE);g.fillRect(810,631,TILE_SIZE,TILE_SIZE);g.fillRect(110,131,TILE_SIZE,TILE_SIZE);
-        g.fillRect(310,131,TILE_SIZE,TILE_SIZE);g.fillRect(510,131,TILE_SIZE,TILE_SIZE);
-        g.fillRect(710,131,TILE_SIZE,TILE_SIZE);g.fillRect(110,531,TILE_SIZE,TILE_SIZE);
-        g.fillRect(310,531,TILE_SIZE,TILE_SIZE);g.fillRect(510,531,TILE_SIZE,TILE_SIZE); g.fillRect(710,531,TILE_SIZE,TILE_SIZE);
+        g.fillRect(10,100,TILE_SIZE,TILE_SIZE);g.fillRect(210,100,TILE_SIZE,TILE_SIZE);g.fillRect(410,100,TILE_SIZE,TILE_SIZE);
+        g.fillRect(610,100,TILE_SIZE,TILE_SIZE);g.fillRect(810,100,TILE_SIZE,TILE_SIZE);
+        g.fillRect(10,700,TILE_SIZE,TILE_SIZE);g.fillRect(210,700,TILE_SIZE,TILE_SIZE);g.fillRect(410,700,TILE_SIZE,TILE_SIZE);g.fillRect(610,700,TILE_SIZE,TILE_SIZE);g.fillRect(810,700,TILE_SIZE,TILE_SIZE);g.fillRect(510,200,TILE_SIZE,TILE_SIZE);
+        g.fillRect(310,200,TILE_SIZE,TILE_SIZE);g.fillRect(110,200,TILE_SIZE,TILE_SIZE);
+        g.fillRect(110,600,TILE_SIZE,TILE_SIZE);g.fillRect(710,200,TILE_SIZE,TILE_SIZE);
+        g.fillRect(310,600,TILE_SIZE,TILE_SIZE);g.fillRect(510,600,TILE_SIZE,TILE_SIZE); g.fillRect(710,600,TILE_SIZE,TILE_SIZE);
 
         g.setColor(Color.BLACK);
-        for (int i=31; i<=731 ;i+=100){
-            for(int j=8;j<=908;j+=100){
-                if(j<908&&i<731) {
+        for (int i=100; i<=800 ;i+=100){
+            for(int j=10;j<=910;j+=100){
+                if(j<910&&i<800) {
                     g.fillRect(j, i, 2, 100);
                     g.fillRect(j, i, 100, 2);
                 }
-                if(j==908&&i<731){
+                if(j==910&&i<800){
                     g.fillRect(j, i, 2, 102);
                 }
-                if(j<908&&i==731){
+                if(j<910&&i==800){
                     g.fillRect(j, i, 102, 2);
                 }
 

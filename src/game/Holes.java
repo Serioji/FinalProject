@@ -16,7 +16,7 @@ public class Holes extends Figure {
         int x = this.col * GameTile.TILE_SIZE;
         int y = this.row * GameTile.TILE_SIZE;
         g.setColor(this.color);
-        g.fillRect(x+10, y+33, 100, 100);
+        g.fillRect(x+10, y, 100, 100);
 
     }
 

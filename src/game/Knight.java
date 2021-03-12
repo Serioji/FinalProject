@@ -33,7 +33,7 @@ public class Knight extends Figure {
 
         int rowCoeficient = Math.abs(moveRow - this.row);
         int colCoeficient = moveCol - this.col;
-        if(rowCoeficient<=1&&colCoeficient==0||colCoeficient<=1 && rowCoeficient==0)
+        if(rowCoeficient==1&&colCoeficient==0||colCoeficient==1 && rowCoeficient==0)
             return  true;
         return false;
     }
@@ -42,9 +42,9 @@ public class Knight extends Figure {
         int x = this.col * GameTile.TILE_SIZE;
         int y = this.row * GameTile.TILE_SIZE;
         g.setColor(this.color);
-        g.fillRect(x+11, y+34, 99, 99);
+        g.fillRect(x+11, y, 99, 99);
         g.setColor(this.color2);
-        g.fillOval(x+50,y+66,25,25);
+        g.fillOval(x+50,y+32,25,25);
 
     }
     public void move(int row,int col){
