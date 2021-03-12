@@ -251,7 +251,22 @@ private void label(){
             moveKnight(row,col,p1);
         }
     }
+    private void dwarfMove(int row,int col,int firstRow,int firstCol){
+        Dwarfs p1 =(Dwarfs) this.dwarf;
+        if(this.hasDwarfs(row,col)){
 
+        } else if(p1.isMoveValid(row,col)){
+            moveDwarfs(row,col,p1);
+        }
+    }
+    private void elfMove(int row,int col,int firstRow,int firstCol){
+        Elfs p1 =(Elfs) this.elf;
+        if(this.hasElfs(row,col)){
+
+        } else if(p1.isMoveValid(row,col)){
+            moveElfs(row,col,p1);
+        }
+    }
 
     private int getBoardDimensionBasedOnCoordinates(int coordinates) {
         return coordinates / GameTile.TILE_SIZE;
