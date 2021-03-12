@@ -312,6 +312,7 @@ private void label(){
                         this.dwarfs[firstRow][firstCol] = null;
                     }
                     if (knight != null) {
+
                         this.knights[row][col] = (new Knight(row, col, Color.GREEN, "K", playerC));
                         knight = null;
                         this.knights[firstRow][firstCol] = null;
@@ -377,6 +378,9 @@ private void label(){
                         this.dwarf = this.getDwarfs(row, col);
                     if (this.hasElfs(row, col))
                         this.elf = this.getElfs(row, col);
+                }
+                if(knight == null || dwarf == null || elfs == null){
+                    UI.render(this,"Край","Имаме победител");
                 }
 
 
